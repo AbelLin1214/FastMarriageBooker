@@ -1,0 +1,6 @@
+*test*
+*ipynb*
+*pycache*
+*logs*
+
+.DS_Store
