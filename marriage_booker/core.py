@@ -2,21 +2,19 @@
 Author: Abel icyheart1214@163.com
 Date: 2022-08-02 14:05:17
 LastEditors: Please set LastEditors
-LastEditTime: 2023-06-19 13:26:20
+LastEditTime: 2023-06-19 14:09:57
 Description: 
 Copyright (c) 2022 by Abel icyheart1214@163.com, All Rights Reserved.
 '''
 import re
 import asyncio
-import base64
-import yaml
 from playwright.async_api._generated import Response, ElementHandle
 from playwright.async_api import async_playwright
 from httpx import AsyncClient
-from logger import logger
-from common import CONFIG
-from utils import ImageTool
-from ttshitu import TTShiTu, TTShiTuData
+from .logger import logger
+from .common import CONFIG
+from .utils import ImageTool
+from .ttshitu import TTShiTu, TTShiTuData
 
 class AutoRegister:
     def __init__(self):
@@ -190,7 +188,7 @@ class AutoRegister:
     async def run_forever(self):
         while True:
             self.context = await self.browser.new_context()
-            await self.context.add_init_script(path='stealth.min.js')
+            await self.context.add_init_script(path='statics/stealth.min.js')
             self.page = await self.context.new_page()
             self.page.on('response', self.on_response)
             # 自动处理弹窗
@@ -207,9 +205,3 @@ class AutoRegister:
             await self.auto_refresh()
             await self.page.close()
             await self.context.close()
-
-if __name__ == '__main__':
-
-    r = AutoRegister()
-    asyncio.run(r.run())
-    # asyncio.run(r.send_notice('福田民政局', 100))

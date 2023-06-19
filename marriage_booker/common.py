@@ -1,11 +1,11 @@
 '''
 Author: Abel
 Date: 2023-06-19 09:58:16
-LastEditTime: 2023-06-19 11:33:37
+LastEditTime: 2023-06-19 14:07:13
 '''
 import yaml
 from pathlib import Path
-from models import Config
+from .models import Config
 
 def load_config(path: str):
     '''加载配置文件'''

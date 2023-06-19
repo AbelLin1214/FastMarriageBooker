@@ -2,13 +2,13 @@
 Author: Abel icyheart1214@163.com
 Date: 2022-05-27 15:21:07
 LastEditors: Please set LastEditors
-LastEditTime: 2023-06-19 13:22:29
+LastEditTime: 2023-06-19 14:07:17
 Description: 
 Copyright (c) 2022 by Abel icyheart1214@163.com, All Rights Reserved.
 '''
 import sys
 import loguru
-from common import CONFIG
+from .common import CONFIG
 
 class MyLogger:
     __logger__ = None

@@ -1,11 +1,13 @@
 <!--
  * @Author: Abel
  * @Date: 2023-06-19 13:27:10
- * @LastEditTime: 2023-06-19 13:55:33
+ * @LastEditTime: 2023-06-19 14:11:51
 -->
 ## `婚姻登记网上预约系统`自动预约程序
 
 ### 使用方法
+
+首先克隆仓库，随后按照以下步骤
 
 #### 步骤1
 
@@ -25,7 +27,7 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 #### 运行
 
-完成以上步骤后，请在config.yaml中填写相应信息，随后执行``python main.py``即可
+完成以上步骤后，请在config.yaml中填写相应信息，随后执行``python -m marriage_booker``
 
 ### 请注意
 1. 仅限**广东省**内预约
