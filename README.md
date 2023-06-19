@@ -1,7 +1,7 @@
 <!--
  * @Author: Abel
  * @Date: 2023-06-19 13:27:10
- * @LastEditTime: 2023-06-19 14:11:51
+ * @LastEditTime: 2023-06-19 14:14:31
 -->
 ## `婚姻登记网上预约系统`自动预约程序
 
@@ -23,6 +23,8 @@
 
 ```shell
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+
+playwright install chrome
 ```
 
 #### 运行
