@@ -2,7 +2,7 @@
 Author: Abel icyheart1214@163.com
 Date: 2022-08-02 14:05:17
 LastEditors: Please set LastEditors
-LastEditTime: 2023-06-21 22:35:37
+LastEditTime: 2023-06-22 01:12:51
 Description: 
 Copyright (c) 2022 by Abel icyheart1214@163.com, All Rights Reserved.
 '''
@@ -65,28 +65,39 @@ class AutoRegister:
                 args=['--disable-blink-features=AutomationControlled']
             )
             await self.run_forever()
-    
-    async def _wait_for_captcha(self, timeout: int=3000):
-        '''等待验证码框的出现'''
-        try:
-            return await self.page.wait_for_selector(
-                '//input[@class="capcha_input"]', timeout=timeout)
-        except:
-            pass
-        
+
+    async def get_captcha_element_from_script(self):
+        '''从HTML script标签中获取验证码输入框与提交按钮'''
+        logger.info('正在尝试从HTML script标签中获取验证码输入框与提交按钮')
+        js = await self.page.query_selector('//script[contains(text(), "captcha")]')
+        js_script = await js.inner_text()
+        p = r'function (\w{20,})?\(.+?name\=(\w+).*'
+        ret = re.search(p, js_script, re.DOTALL)
+        if ret:
+            captcha_input = await self.page.wait_for_selector(
+                f'//input[@name="{ret[2]}"]'
+                )
+            btn = await self.page.wait_for_selector(
+                f'//input[@onclick="{ret[1]}();"]'
+                )
+            return captcha_input, btn
+
+        return None, None
     
     async def input_code(self):
         '''输入验证码'''
-        
         while True:
             try:
-                captcha_input = await self._wait_for_captcha()
+                submit_btn = await self.page.query_selector('//input[@class="btn_1"]')
+                captcha_input = await self.page.query_selector('//input[@class="capcha_input"]')
                 if not captcha_input:
-                    logger.info('未检测到验证码输入框，跳过')
-                    break
+                    captcha_input, submit_btn = await self.get_captcha_element_from_script()
+                    if not captcha_input:
+                        logger.info('未检测到验证码输入框，跳过')
+                        break
                 await captcha_input.fill(self.code, timeout=5000)
                 async with self.page.expect_navigation(timeout=3000):
-                    await self.page.click('//input[@class="btn_1"]', timeout=3000)
+                    await submit_btn.click(timeout=3000)
                 await self.page.wait_for_load_state('networkidle')
                 break
             except Exception as e:

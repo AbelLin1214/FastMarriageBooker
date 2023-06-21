@@ -1,7 +1,7 @@
 <!--
  * @Author: Abel
  * @Date: 2023-06-19 13:27:10
- * @LastEditTime: 2023-06-19 14:14:31
+ * @LastEditTime: 2023-06-21 22:44:22
 -->
 ## `婚姻登记网上预约系统`自动预约程序
 
@@ -29,7 +29,7 @@ playwright install chrome
 
 #### 运行
 
-完成以上步骤后，请在config.yaml中填写相应信息，随后执行``python -m marriage_booker``
+完成以上步骤后，请复制``config_demo.yaml``为``config.yaml``并填写相应信息，随后执行``python -m marriage_booker``
 
 ### 请注意
 1. 仅限**广东省**内预约

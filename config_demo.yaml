@@ -46,8 +46,8 @@ date: '2023-06-27'
 
 # www.ttshitu.com识图平台账号密码
 ttshitu:
-  username: qqq47267758  # 图鉴账号
-  password: qqq5713231  # 图鉴密码
+  username: xxxxxxx  # 图鉴账号
+  password: yyyyyy  # 图鉴密码
   # 识别类型,详见http://www.ttshitu.com/docs/index.html
   type_id: 1003  # 1003为数英混合2，如果准确率不高，可以尝试更换识别类型
 
