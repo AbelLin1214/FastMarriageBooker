@@ -2,7 +2,7 @@
 Author: Abel icyheart1214@163.com
 Date: 2022-08-02 14:05:17
 LastEditors: Please set LastEditors
-LastEditTime: 2023-06-19 14:09:57
+LastEditTime: 2023-06-21 22:35:37
 Description: 
 Copyright (c) 2022 by Abel icyheart1214@163.com, All Rights Reserved.
 '''
@@ -66,12 +66,21 @@ class AutoRegister:
             )
             await self.run_forever()
     
+    async def _wait_for_captcha(self, timeout: int=3000):
+        '''等待验证码框的出现'''
+        try:
+            return await self.page.wait_for_selector(
+                '//input[@class="capcha_input"]', timeout=timeout)
+        except:
+            pass
+        
+    
     async def input_code(self):
         '''输入验证码'''
         
         while True:
             try:
-                captcha_input = await self.page.query_selector('//input[@class="capcha_input"]')
+                captcha_input = await self._wait_for_captcha()
                 if not captcha_input:
                     logger.info('未检测到验证码输入框，跳过')
                     break
